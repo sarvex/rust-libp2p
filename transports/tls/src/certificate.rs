@@ -105,7 +105,7 @@ pub fn generate(
     );
 
     let certificate = {
-        let mut params = rcgen::CertificateParams::new(vec![])?;
+        let mut params = rcgen::CertificateParams::default();
         params.distinguished_name = rcgen::DistinguishedName::new();
         params.custom_extensions.push(make_libp2p_extension(
             identity_keypair,
@@ -167,7 +167,7 @@ pub struct VerificationError(#[from] pub(crate) webpki::Error);
 /// Internal function that only parses but does not verify the certificate.
 ///
 /// Useful for testing but unsuitable for production.
-fn parse_unverified(der_input: &[u8]) -> Result<P2pCertificate, webpki::Error> {
+fn parse_unverified(der_input: &[u8]) -> Result<P2pCertificate<'_>, webpki::Error> {
     let x509 = X509Certificate::from_der(der_input)
         .map(|(_rest_input, x509)| x509)
         .map_err(|_| webpki::Error::BadDer)?;

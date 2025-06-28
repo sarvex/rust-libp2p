@@ -1,3 +1,12 @@
+## 0.48.0
+
+- Configurable outbound_substreams_timeout.
+  See [PR 6015](https://github.com/libp2p/rust-libp2p/pull/6015).
+- Rename `outbound_substreams_timeout` to `substreams_timeout` for future-proofness.
+  See [PR 6076](https://github.com/libp2p/rust-libp2p/pull/6076).
+
+<!-- Update to libp2p-swarm v0.47.0 -->
+
 ## 0.47.0
 
 - Expose a kad query facility allowing specify num_results dynamically.
@@ -14,6 +23,8 @@
   See [PR 5715](https://github.com/libp2p/rust-libp2p/pull/5715).
 - Remove deprecated default constructor for `ProtocolConfig`.
   See [PR 5774](https://github.com/libp2p/rust-libp2p/pull/5774).
+- Add lazy cleanup for expired provider records in `Behavior::get_providers` and `Behavior::provider_peers`.
+  See [PR 5980](https://github.com/libp2p/rust-libp2p/pull/5980).
 
 <!-- Update to libp2p-core v0.43.0 -->
 

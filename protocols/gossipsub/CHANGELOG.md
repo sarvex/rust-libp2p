@@ -1,11 +1,23 @@
 ## 0.49.0
 
-- Improve error messaging by renaming `PublishError::InsufficientPeers` to 
-  `PublishError::NoPeersSubscribedToTopic`. This change makes it clearer that the error occurs 
-  specifically when trying to publish to a topic with no subscribed peers, rather than a general 
+- Feature gate metrics related code. This changes some `Behaviour` constructor methods.
+  See [PR 6020](https://github.com/libp2p/rust-libp2p/pull/6020)
+- Send IDONTWANT before Publishing a new message.
+  See [PR 6017](https://github.com/libp2p/rust-libp2p/pull/6017)
+
+- Improve log messaging by renaming `message` to `message_id`. This change makes it log coherent to
+  the field and also improve duplication of `message` field.
+  See [PR 5972](https://github.com/libp2p/rust-libp2p/pull/5972)
+
+- Fix a race condition for messages published which are already in the network.
+  See [PR 5928](https://github.com/libp2p/rust-libp2p/pull/5928)
+
+- Improve error messaging by renaming `PublishError::InsufficientPeers` to
+  `PublishError::NoPeersSubscribedToTopic`. This change makes it clearer that the error occurs
+  specifically when trying to publish to a topic with no subscribed peers, rather than a general
   peer availability issue.
   See [PR 5912](https://github.com/libp2p/rust-libp2p/pull/5912)
-  
+
 - Allow whitelisting topics for metrics to ensure metrics are recorded correctly for these topics.
   See [PR 5895](https://github.com/libp2p/rust-libp2p/pull/5895)
 
@@ -17,6 +29,17 @@
 
 - Fix messages were not forwarded to floodsub peers.
   See [PR 5908](https://github.com/libp2p/rust-libp2p/pull/5908)
+
+- Fix messages were published to all floodsub peers regardless of their topic.
+  See [PR 5904](https://github.com/libp2p/rust-libp2p/pull/5904)
+
+- Upgrade `prometheus-client` to `v0.23`
+  See [PR 5960](https://github.com/libp2p/rust-libp2p/pull/5960).
+
+- Allow customizing max transmit size and mesh-n-* parameters per topic.
+  See [PR 5868](https://github.com/libp2p/rust-libp2p/pull/5868)
+
+<!-- Update to libp2p-swarm v0.47.0 -->
 
 ## 0.48.0
 
